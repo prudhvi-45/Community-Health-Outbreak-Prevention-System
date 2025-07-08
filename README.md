@@ -1,25 +1,26 @@
-# Community Health Outbreak Prevention System
+# Community Health Outbreak Detection
 
-This project is an early warning system to detect and prevent disease outbreaks in a community using synthetic health data and machine learning techniques.
+## Files
 
-## Features
+- `generate_data.py`: Generates synthetic health data with flu cases, dengue cases, and mobility index.
+  - Uses: pandas, numpy
 
-- Generates synthetic health data (flu, dengue, mobility)
-- Detects potential outbreak clusters using KMeans
-- Forecasts future flu cases with ARIMA
-- Triggers alerts if outbreak thresholds are exceeded
+- `data_ingestion.py`: Loads and fills missing health data from CSV.
+  - Uses: pandas
 
-## Project Structure
+- `pattern_detection.py`: Clusters data using KMeans to detect outbreak patterns.
+  - Uses: sklearn.cluster.KMeans
 
-- `generate_data.py`: Creates synthetic health data (`health_data.csv`)
-- `data_ingestion.py`: Loads and prepares the data
-- `pattern_detection.py`: Clusters data to detect outbreak patterns
-- `risk_modeling.py`: Predicts future flu cases
-- `alerting.py`: Generates alerts based on forecasted data
-- `main.py`: Runs the full pipeline
+- `risk_modeling.py`: Forecasts flu cases using ARIMA model.
+  - Uses: statsmodels.tsa.arima.model.ARIMA
 
-## How to Run
+- `alerting.py`: Generates alert based on forecasted flu cases.
+  - Constant: `THRESHOLD = 30`
 
-1. Generate data:
+- `main.py`: Runs the full process - data loading, clustering, forecasting, and alerting.
+
+## How to Use
+
+1. Run `generate_data.py` to create `health_data.csv`:
    ```bash
    python generate_data.py
